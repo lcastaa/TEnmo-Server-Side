@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-            docker {
-                image 'maven:3.8.4-jdk-11'
-                args '-v /root/.m2:/root/.m2'
-           }
-    }
+    agent any
 
     stages {
         stage('Clone Repo'){
