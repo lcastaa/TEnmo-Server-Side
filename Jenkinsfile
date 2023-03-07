@@ -11,6 +11,11 @@ pipeline {
         stage('Deploy and Execute container') {
             steps {
                 sh 'sudo docker-compose up -d'
+            }
+        }
+
+        stage('Execute container') {
+            steps {
                 sh 'sudo docker run -p 8081:8081 --name tenmoapp tenmo_myapp'
             }
         }
