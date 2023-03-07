@@ -29,7 +29,7 @@ public class JdbcAccountDao implements AccountDao {
             throw new IllegalArgumentException();
         }
         Account account = null;
-        String sql = "Select account_id, balance, account.user_id from account join tenmo_user ON tenmo_user.user_id = account.user_id where tenmo_user.user_id = ?";
+        String sql = "Select account_id , balance, account.user_id from account join tenmo_user ON tenmo_user.user_id = account.user_id where tenmo_user.user_id = ?";
         SqlRowSet result = jdbcTemplate.queryForRowSet(sql,id);
         if (result != null){
             while(result.next()){
