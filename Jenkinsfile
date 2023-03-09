@@ -8,6 +8,21 @@ pipeline {
             }
         }
 
+        stage('Verify Artifact') {
+            steps {
+                script {
+                    def artifactPath = sh(
+                        script: 'ls target/*.jar',
+                        returnStdout: true
+                    ).trim()
+                    if (artifactPath.empty) {
+                        error 'Artifact not found'
+                    }
+                    echo "Artifact found at ${artifactPath}"
+                }
+            }
+        }
+
         stage('Stop and Remove Previous Container ') {
             steps {
                 script {
