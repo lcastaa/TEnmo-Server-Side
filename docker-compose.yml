@@ -8,7 +8,7 @@ services:
     container_name: tenmoapp
     environment:
       SPRING_PROFILES_ACTIVE: prod
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/myappdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/tenmo
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres1
 
