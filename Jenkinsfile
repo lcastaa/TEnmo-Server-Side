@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'bash ./mvnw clean package -Dmaven.test.skip=true'
+                sh 'bash ./mvnw clean package -Dmaven.test.skip=true -Dspring-boot.repackage.main-class=com.techelevator.tenmo'
             }
         }
 
@@ -37,7 +37,7 @@ pipeline {
 
         stage('Creating and Deploy Container') {
             steps {
-                sh 'sudo docker-compose up --force-recreate -d'
+                sh 'sudo docker-compose up -d'
             }
         }
     }
