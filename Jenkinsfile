@@ -3,16 +3,10 @@ pipeline {
 
     stages {
 
-        stage('Generate Maven wrapper') {
-            steps {
-                sh 'mvn -N io.takari:maven:wrapper'
-            }
-        }
-
 
         stage('Build') {
             steps {
-                sh 'bash ./mvnw clean package -Dmaven.test.skip=true -Dspring-boot.repackage.main-class=com.techelevator.tenmo'
+                sh 'bash ./mvnw clean install -Dmaven.test.skip=true -Dspring-boot.repackage.main-class=com.techelevator.tenmo'
             }
         }
 
