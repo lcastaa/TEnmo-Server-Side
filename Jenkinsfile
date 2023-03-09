@@ -25,6 +25,12 @@ pipeline {
             }
         }
 
+        stage('Remove Previous Docker Image') {
+            steps {
+                sh 'sudo docker rmi -f $(sudo docker images -q tenmo_myapp)'
+            }
+        }
+
         stage('Stop and Remove Previous Container ') {
             steps {
                 script {
