@@ -16,7 +16,7 @@ pipeline {
 
         stage('Execute container') {
             steps {
-                sh 'sudo docker run -d -p 8082:8082 --network host --name tenmoapp  tenmo_myapp'
+                sh 'sudo docker run -d -p 8081:8081 --network host --name tenmoapp  tenmo_myapp'
             }
         }
     }
