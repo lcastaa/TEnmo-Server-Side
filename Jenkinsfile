@@ -37,6 +37,8 @@ pipeline {
             }
         }
 
+
+
         stage('Creating and Deploy Container') {
             steps {
                 sh 'sudo docker-compose up --force-recreate -d'
