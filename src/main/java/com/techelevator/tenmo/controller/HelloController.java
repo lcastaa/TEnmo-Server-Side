@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/hello")
 @PreAuthorize("isAuthenticated()")
+@RequestMapping(path = "/test")
 public class HelloController {
 
     @GetMapping
