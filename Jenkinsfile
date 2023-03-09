@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage('Stop and Remove Container') {
+        stage('Stop and Remove Previous Container ') {
             steps {
                 script {
                     // Check if the container is already running
@@ -23,6 +23,12 @@ pipeline {
         stage('Creating and Deploy Container') {
             steps {
                 sh 'sudo docker-compose up --force-recreate -d'
+            }
+        }
+
+        stage('Confirmation') {
+            steps {
+                sh 'echo success!!!!'
             }
         }
 
