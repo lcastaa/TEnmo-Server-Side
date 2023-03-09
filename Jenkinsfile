@@ -19,7 +19,7 @@ pipeline {
 
                     // Stop and delete the container if it is running
                     if (!containerId.empty) {
-                        sh "sudo docker container kill ${containerId} && sudo docker container rm ${containerId}"
+                         sh './kill-and-remove-container.sh ${containerId}'
                     }
                 }
             }
