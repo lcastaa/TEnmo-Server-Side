@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo bash ./mvnw clean package -Dmaven.test.skip=true'
+                sh 'bash ./mvnw clean package -Dmaven.test.skip=true'
             }
         }
 
