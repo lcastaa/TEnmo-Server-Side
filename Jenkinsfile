@@ -28,7 +28,7 @@ pipeline {
 
         stage('Confirmation') {
             steps {
-                sh 'echo success!!!!'
+                sh 'echo success!!!'
             }
         }
 
