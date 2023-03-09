@@ -20,16 +20,11 @@ pipeline {
             }
         }
 
-        stage('Creating Container') {
+        stage('Creating and Deploy Container') {
             steps {
                 sh 'sudo docker-compose up --force-recreate -d'
             }
         }
 
-        stage('Start Container') {
-            steps {
-                sh 'sudo docker run -d -p 8081:8081 --network host --name tenmoapp tenmo_myapp'
-            }
-        }
     }
 }
