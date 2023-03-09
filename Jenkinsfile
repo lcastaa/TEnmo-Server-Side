@@ -8,6 +8,8 @@ pipeline {
             }
         }
 
+         def returnStatus = 0
+
         stage('Check for previous Running Container & Deploy Container') {
             steps {
                 // Check if the container is already running
