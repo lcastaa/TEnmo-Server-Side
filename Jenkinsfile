@@ -8,12 +8,6 @@ pipeline {
             }
         }
 
-        stage('Creating Container') {
-            steps {
-                sh 'sudo docker-compose up --force-recreate -d'
-            }
-        }
-
         stage('Stop and Remove Container') {
             steps {
                 script {
@@ -28,6 +22,12 @@ pipeline {
                         sh "sudo docker container kill ${containerId} && sudo docker container rm ${containerId}"
                     }
                 }
+            }
+        }
+
+        stage('Creating Container') {
+            steps {
+                sh 'sudo docker-compose up --force-recreate -d'
             }
         }
 
