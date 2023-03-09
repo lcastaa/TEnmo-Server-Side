@@ -13,5 +13,5 @@ if [ ! -z "$container_id" ]; then
 fi
 
 # Remove the container
-docker rm "$container_id"
+docker rm -f "$container_id"
 
