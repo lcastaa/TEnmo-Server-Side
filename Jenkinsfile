@@ -13,7 +13,7 @@ pipeline {
                 // Check if the container is already running
                 script {
                     def containerId = sh(
-                        script: 'sudo docker ps -aqf "name=tenmoapp"',
+                        script: 'sudo docker ps -aqf "name=tenmoapp" --format="{{.ID}}"',
                         returnStdout: true
                     ).trim()
 
