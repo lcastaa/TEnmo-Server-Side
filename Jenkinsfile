@@ -13,19 +13,19 @@ pipeline {
                 // Check if the container is already running
                 script {
                     def isRunning = sh(
-                        script: 'docker ps --format "{{.Names}}" | grep tenmoapp',
+                        script: 'sudo docker ps --format "{{.Names}}" | grep tenmoapp',
                         returnStatus: true
                     ).returnStatus == 0
 
                     // Stop and delete the container if it is running
                     if (isRunning) {
-                        sh 'docker stop tenmoapp'
-                        sh 'docker rm tenmoapp'
+                        sh 'sudo docker stop tenmoapp'
+                        sh 'sudo docker rm tenmoapp'
                     }
                 }
 
                 // Run the updated container
-                sh 'docker-compose up --force-recreate -d'
+                sh 'sudo docker-compose up --force-recreate -d'
             }
         }
 
