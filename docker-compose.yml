@@ -5,6 +5,7 @@ services:
     build: .
     ports:
       - "8081:8081"
+    container_name: tenmoapp
     environment:
       SPRING_PROFILES_ACTIVE: prod
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/myappdb
