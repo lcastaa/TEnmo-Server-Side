@@ -12,15 +12,15 @@ pipeline {
             steps {
                 // Check if the container is already running
                 script {
-                    def isRunning = sh(
-                        script: 'sudo docker ps --format "{{.Names}}" | grep tenmoapp',
+                    def containerId = sh(
+                        script: 'sudo docker ps -aqf "name=tenmoapp"',
                         returnStdout: true
                     ).trim()
 
                     // Stop and delete the container if it is running
-                    if (isRunning) {
-                        sh 'sudo docker stop tenmoapp'
-                        sh 'sudo docker rm tenmoapp'
+                    if (!containerId.empty) {
+                        sh "sudo docker stop ${containerId}"
+                        sh "sudo docker rm ${containerId}"
                     }
                 }
 
