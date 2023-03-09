@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    def returnStatus = 0
 
     stages {
         stage('Build') {
@@ -8,7 +9,7 @@ pipeline {
             }
         }
 
-         def returnStatus = 0
+
 
         stage('Check for previous Running Container & Deploy Container') {
             steps {
