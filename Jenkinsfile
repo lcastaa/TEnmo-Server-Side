@@ -14,26 +14,27 @@ pipeline {
             }
         }
 
-       stage('Execute Container') {
-           steps {
-              script {
-                  // Check if the container is already running
-                  def containerId = sh(
-                  script: 'sudo docker ps -aqf "name=tenmoapp" --format="{{.ID}}"',
-                  returnStdout: true
-                  ).trim()
+        stage('Stop and Remove Container') {
+            steps {
+                script {
+                    // Check if the container is already running
+                    def containerId = sh(
+                        script: 'sudo docker ps -aqf "name=tenmoapp" --format="{{.ID}}"',
+                        returnStdout: true
+                    ).trim()
 
-                   // Stop and delete the container if it is running
-                   if (!containerId.empty) {
-                      sh 'sudo docker container kill ${containerId} && sudo docker container rm ${containerId}'
-              }
-           }
-       }
+                    // Stop and delete the container if it is running
+                    if (!containerId.empty) {
+                        sh "sudo docker container kill ${containerId} && sudo docker container rm ${containerId}"
+                    }
+                }
+            }
+        }
 
-       stage('Execute Container') {
-           steps {
-               sh 'sudo docker run -d -p 8081:8081 --network host --name tenmoapp tenmo_myapp'
-           }
-       }
+        stage('Start Container') {
+            steps {
+                sh 'sudo docker run -d -p 8081:8081 --network host --name tenmoapp tenmo_myapp'
+            }
+        }
     }
 }
