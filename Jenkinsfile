@@ -1,6 +1,7 @@
 pipeline {
     agent any
-    def returnStatus = 0
+
+
 
     stages {
         stage('Build') {
@@ -15,6 +16,8 @@ pipeline {
             steps {
                 // Check if the container is already running
                 script {
+                    def returnStatus = 0
+
                     def isRunning = sh(
                         script: 'sudo docker ps --format "{{.Names}}" | grep tenmoapp',
                         returnStatus: true
