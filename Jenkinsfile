@@ -25,12 +25,5 @@ pipeline {
                 sh 'sudo docker-compose up --force-recreate -d'
             }
         }
-
-        stage('Confirmation') {
-            steps {
-                sh 'echo success!!!'
-            }
-        }
-
     }
 }
