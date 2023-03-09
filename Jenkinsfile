@@ -19,7 +19,7 @@ pipeline {
 
                     // Stop and delete the container if it is running
                     if (!containerId.empty) {
-                         sh 'bash ./kill-and-remove-container.sh ${containerId}'
+                         sh 'sudo bash ./kill-and-remove-container.sh ${containerId}'
                     }
                 }
             }
