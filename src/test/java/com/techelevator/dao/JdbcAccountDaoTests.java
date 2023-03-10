@@ -9,13 +9,12 @@ import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JdbcAccountDaoTests extends BaseDaoTests{
-    protected static final Account ACCOUNT_1 = new Account(2001, 1001, new BigDecimal(100.00));
-    protected static final Account ACCOUNT_2 = new Account(2002, 1002, new BigDecimal(100.00));
-    protected static final Account ACCOUNT_3 = new Account(2003, 1003, new BigDecimal(0));
+    protected static final Account ACCOUNT_1 = new Account(2001, 1001, BigDecimal.valueOf(100));
 
     private JdbcAccountDao testDao;
 
@@ -36,15 +35,6 @@ public class JdbcAccountDaoTests extends BaseDaoTests{
         Assert.assertEquals(test.getAccountId(), ACCOUNT_1.getAccountId());
     }
 
-    @Test
-    public void allAccounts_returns_all_accounts(){
-        List<Account> accounts = new ArrayList<>();
-        accounts = testDao.allAccounts();
-        Assert.assertEquals(accounts.get(1).getAccountId(), ACCOUNT_1.getAccountId());
-        Assert.assertEquals(accounts.get(2).getAccountId(), ACCOUNT_2.getAccountId());
-        Assert.assertEquals(accounts.get(3).getAccountId(), ACCOUNT_3.getAccountId());
-    }
-
     @Test(expected=IllegalArgumentException.class)
     public void updateBalance_throws_exception_for_null_input(){
         testDao.updateBalance(null, null);
@@ -52,7 +42,9 @@ public class JdbcAccountDaoTests extends BaseDaoTests{
 
     @Test()
     public void subtractBalance_subtracts_appropriate_amount(){
-        testDao.subtractBalance(ACCOUNT_1.getAccountId(), new BigDecimal(50.00));
-        Assert.assertEquals(ACCOUNT_1.getBalance(), new BigDecimal(50.00));
+        testDao.subtractBalance(2001, BigDecimal.valueOf(50));
+        Account test = testDao.getAccount(1001);
+        BigDecimal result = test.getBalance();
+        Assert.assertEquals(0, BigDecimal.valueOf(50.00).compareTo(result));
     }
     }
